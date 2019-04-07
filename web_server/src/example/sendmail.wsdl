@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://example" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://example" xmlns:intf="http://example" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://example" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="m_url" type="xsd:string"/>
+   <element name="m_payload" type="xsd:string"/>
+   <element name="sendEmailReturn" type="xsd:string"/>
+   <element name="url">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="item" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="payload" type="xsd:string"/>
+   <element name="sendEmailBatchReturn" type="xsd:string"/>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="sendEmailBatchResponse">
+
+      <wsdl:part element="impl:sendEmailBatchReturn" name="sendEmailBatchReturn"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="sendEmailRequest">
+
+      <wsdl:part element="impl:m_url" name="m_url"/>
+
+      <wsdl:part element="impl:m_payload" name="m_payload"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="sendEmailResponse">
+
+      <wsdl:part element="impl:sendEmailReturn" name="sendEmailReturn"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="sendEmailBatchRequest">
+
+      <wsdl:part element="impl:url" name="url"/>
+
+      <wsdl:part element="impl:payload" name="payload"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="sendmail">
+
+      <wsdl:operation name="sendEmail" parameterOrder="m_url m_payload">
+
+         <wsdl:input message="impl:sendEmailRequest" name="sendEmailRequest"/>
+
+         <wsdl:output message="impl:sendEmailResponse" name="sendEmailResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="sendEmailBatch" parameterOrder="url payload">
+
+         <wsdl:input message="impl:sendEmailBatchRequest" name="sendEmailBatchRequest"/>
+
+         <wsdl:output message="impl:sendEmailBatchResponse" name="sendEmailBatchResponse"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="sendmailSoapBinding" type="impl:sendmail">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="sendEmail">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="sendEmailRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="sendEmailResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="sendEmailBatch">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="sendEmailBatchRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="sendEmailBatchResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="sendmailService">
+
+      <wsdl:port binding="impl:sendmailSoapBinding" name="sendmail">
+
+         <wsdlsoap:address location="http://localhost:8080//services/example/sendmail"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

@@ -1,0 +1,2 @@
+object1 cn.edu.cug.Teacher // cn.edu.hust.Teacher
+object2 cn.edu.cug.Student

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>中国象棋（网页版）</title>
+  
+  
+  <link rel='stylesheet prefetch' href='http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css'>
+  <link rel="stylesheet" href="css/style.css">
+
+
+</head>
+
+<body>
+
+    <div class="wrapper">
+    <form class="form-signin" action="register" onsubmit="return isEqual()" name="myform" method="GET">       
+      <h2 class="form-signin-heading">请注册</h2>
+
+      <input type="text" class="form-control" name="username" id="username" required="required" placeholder="用户名" autofocus="" />
+
+      <input type="password" class="form-control" name="password" id="password" required="required" placeholder="密码" />
+
+      <input type="password" class="form-control" name="enterpassword" id="enterpassword" required="required" placeholder="确认密码" />
+
+      <input type="text" class="form-control" name="email" id="email" required="required" placeholder="邮箱" />
+  
+      <script type="text/javascript">
+	function isEqual()
+	{
+		var pword=document.getElementById("password").value
+		var epword=document.getElementById("enterpassword").value
+		if(pword==epword)
+		{
+			document.getElementById('myform').submit()	
+		}
+		else
+		{
+			alert("两次密码不一样")
+			return false;
+		}
+	}
+      </script>
+
+      <button class="btn btn-lg btn-primary btn-block" type="submit">注册</button>
+
+
+    </form>
+  </div>
+  
+</body>
+
+</html>
+
